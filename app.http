@@ -1,11 +1,11 @@
-GET http://localhost:8080/todos/
+GET http://localhost:3004/todos/
 
 ###
-GET http://localhost:8080/todos/2/
+GET http://localhost:3004/todos/2/
 
 ###
 
-POST http://localhost:8080/todos/
+POST http://localhost:3004/todos/
 Content-Type: application/json
 
 {
@@ -15,7 +15,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8080/todos/
+PUT http://localhost:3004/todos/
 Content-Type: application/json
 
 {
@@ -23,4 +23,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8080/todos/1/
+DELETE http://localhost:3004/todos/1/
