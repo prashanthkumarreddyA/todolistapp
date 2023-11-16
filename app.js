@@ -34,8 +34,10 @@ const initializeDbAndServer = async () => {
 initializeDbAndServer();
 
 app.get("/ipconfig", (req, res) => {
-  const clientIp = req.clientIp;
-  res.send(`Your IP Address is ${clientIp}.`);
+  const clientIpV4 = req.clientIp;
+  const clientIpV6 = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+
+  res.send(`Your IPv4 Address is ${clientIpV4} and your IPv6 Address is ${clientIpV6}.`);
 });
 
 app.get("/todos/", async (request, response) => {
