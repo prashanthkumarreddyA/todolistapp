@@ -3,6 +3,7 @@ const { open } = require("sqlite");
 const sqlite3 = require("sqlite3");
 const path = require("path");
 const cors = require("cors");
+const requestIp = require("request-ip");
 
 const databasePath = path.join(__dirname, "todoApplication.db");
 
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 let database = null;
+app.use(requestIp.mw());
 
 const initializeDbAndServer = async () => {
   try {
@@ -30,6 +32,11 @@ const initializeDbAndServer = async () => {
 };
 
 initializeDbAndServer();
+
+app.get("/ipconfig", (req, res) => {
+  const clientIp = req.clientIp;
+  res.send(`Your IP Address is ${clientIp}.`);
+});
 
 app.get("/todos/", async (request, response) => {
   const getTodoQuery = `
